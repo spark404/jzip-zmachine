@@ -86,8 +86,6 @@ static int strictz_error_count[STRICTZ_NUM_ERRORS];
 
 /* getopt linkages */
 
-extern int optind;
-extern const char *optarg;
 extern ZINT16 default_fg, default_bg;
 
 #endif /* !defined(AMIGA) */
