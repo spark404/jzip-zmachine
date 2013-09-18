@@ -42,6 +42,7 @@
 #include <termio.h>
 #elif defined(POSIX)
 #include <termios.h>
+#include <termcap.h>
 #endif /* defined(POSIX) */
 
 #include <signal.h>
@@ -113,7 +114,7 @@ int input_line( int, char *, int, int * );
 int input_character( int );
 static int wait_for_char( int );
 
-void outc( int );
+int outc( int );
 void move_cursor( int, int );
 void get_cursor_position( int *, int * );
 void set_attribute( int );
@@ -121,16 +122,11 @@ void display_char( int );
 
 /* done with editing prototypes */
 
-extern int tgetent(  );
-extern int tgetnum(  );
-extern char *tgetstr(  );
-extern char *tgoto(  );
-extern void tputs(  );
-
-void outc( int c )
+int outc( int c )
 {
-   putchar( c );
-}                               /* outc */
+   return putchar( c );
+} /* outc */
+
 
 void initialize_screen(  )
 {
@@ -527,7 +523,7 @@ void set_attribute( int attribute )
       tputs( US, 1, outc );
 
    if ( attribute & FIXED_FONT )
-      ;
+   	   {}
 #endif
 
 }                               /* set_attribute */
@@ -1014,6 +1010,8 @@ int input_line( int buflen, char *buffer, int timeout, int *read_size )
          }
       }
    }
+
+   return 0;
 }                               /* input_line */
 
 /*

@@ -459,7 +459,7 @@ int main( int argc, char **argv )
                      }          
                      cklen -= 4;
                      filelen -= 4; 
-                     printf( "  %d bytes of data", cklen ); 
+                     printf( "  %lu bytes of data", cklen ); 
                   }             
                }                
             }                   
@@ -540,11 +540,11 @@ int main( int argc, char **argv )
       }
       else if ( !strncmp( id, "    ", 4 ) )
       {
-         printf( " (%d-byte filler)\n", cklen ); 
+         printf( " (%lu-byte filler)\n", cklen ); 
       }
       else
       {
-         printf( "\n*** Unknown %d-byte chunk type found.\n", cklen ); 
+         printf( "\n*** Unknown %lu-byte chunk type found.\n", cklen ); 
          ++errors;
       }
       filelen -= 8;
